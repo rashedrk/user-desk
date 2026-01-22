@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -9,6 +8,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
+import { Search } from "lucide-react";
 
 const selectItem = [
   { value: "all", label: "All" },
@@ -17,7 +22,7 @@ const selectItem = [
   { value: "viewer", label: "Viewer" },
 ];
 
-type TSelectItemValue = typeof selectItem[number]["value"];
+type TSelectItemValue = (typeof selectItem)[number]["value"];
 
 const SearchBox = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -33,11 +38,17 @@ const SearchBox = () => {
 
   return (
     <div className="flex mt-20 gap-2">
-      <Input
-        placeholder="Search users... "
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <InputGroup>
+        <InputGroupInput
+          placeholder="Search users... "
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <InputGroupAddon>
+          <Search />
+        </InputGroupAddon>
+      </InputGroup>
+
       <Select value={selectedRole} onValueChange={setSelectedRole}>
         <SelectTrigger className="w-24">
           <SelectValue />
