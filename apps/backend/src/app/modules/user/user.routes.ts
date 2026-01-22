@@ -4,5 +4,6 @@ import { UserController } from "./user.controller";
 const router: Router = Router();
 
 router.get("/", UserController.getAllUsers);
+router.get("/:id", UserController.getUserById);
 
 export const UserRoutes: RouterType = router;

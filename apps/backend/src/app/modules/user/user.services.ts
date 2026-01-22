@@ -27,4 +27,13 @@ const getAllUsers = async (query: TUserQueryRequest = {}) => {
     });
 }
 
-export const UserServices = { getAllUsers };
+const getUserById = async (id: string) => {
+    return prisma.user.findUnique({
+        where: { id },
+    });
+}
+
+export const UserServices = {
+    getAllUsers,
+    getUserById
+};
