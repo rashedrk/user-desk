@@ -3,23 +3,49 @@ import { Separator } from "../ui/separator";
 import SearchBox from "./SearchBox/SearchBox";
 import UserCard from "./UserCard/UserCard";
 import UserDetails from "./UserDetails/UserDetails";
-import type { TUser } from "@/types/user.type";
-import { useState } from "react";
+import type { TUser, TQueryParams, TSelectItemValue } from "@/types/user.type";
+import { useState, useEffect } from "react";
+import UserCardSkeleton from "../Skeleton/UserCardSkeleton";
+import UserDetailsSkeleton from "../Skeleton/userDetailsSkeleton";
 
 const Home = () => {
   const [selectedId, setSelectedId] = useState<string>("");
-  const { data: users, isLoading } = useUsers();
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedRole, setSelectedRole] = useState<TSelectItemValue>("all");
+  const [queryParams, setQueryParams] = useState<TQueryParams>({});
 
+  useEffect(() => {
+    const delaySearch = setTimeout(() => {
+      const params: TQueryParams = {};
+      if (searchTerm) params.search = searchTerm;
+      if (selectedRole !== "all") params.role = selectedRole;
+      setSelectedId('');
+      setQueryParams(params);
+    }, 400);
+
+    return () => clearTimeout(delaySearch);
+  }, [searchTerm, selectedRole]);
+
+  const { data: users, isLoading } = useUsers(queryParams);
 
   return (
     <div>
-      <SearchBox />
-      <div className="flex mt-10 gap-4 h-full">
+      <SearchBox
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        selectedRole={selectedRole}
+        setSelectedRole={setSelectedRole}
+      />
+      <div className="flex mt-10 gap-4 h-full ">
         <div>
           {isLoading ? (
-            <p>Loading....</p>
+            <>
+              {[1, 2, 3, 4].map((_, index) => (
+                <UserCardSkeleton key={index} />
+              ))}
+            </>
           ) : (
-            users?.map((user: TUser) => (
+            users.map((user: TUser) => (
               <div
                 key={user.id}
                 onClick={() => setSelectedId(user.id)}
@@ -31,7 +57,20 @@ const Home = () => {
           )}
         </div>
         <Separator orientation="vertical" />
-            <UserDetails selectedId={selectedId} />
+        {isLoading ? (
+          <UserDetailsSkeleton />
+        ) : users && users.length > 0 ? (
+          <UserDetails selectedId={selectedId} />
+        ) : (
+          <div className="flex flex-col items-center justify-center flex-1 h-80">
+            <p className="text-lg font-semibold text-muted-foreground mb-2">
+              No users found
+            </p>
+            <p className="text-sm text-muted-foreground text-center">
+              Try adjusting your search or filter criteria
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

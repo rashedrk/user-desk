@@ -1,3 +1,5 @@
+import type { selectItem } from "@/constant/user.constant";
+
 export type TUser = {
     id: string;
     name: string;
@@ -14,3 +16,5 @@ export type TQueryParams = {
 export type TUserInfo = TUser & {
     email: string;
 }
+
+export type TSelectItemValue = (typeof selectItem)[number]["value"];

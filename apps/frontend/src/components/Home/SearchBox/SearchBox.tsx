@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -14,28 +13,24 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { Search } from "lucide-react";
+import type { TSelectItemValue } from "@/types/user.type";
+import { selectItem } from "@/constant/user.constant";
 
-const selectItem = [
-  { value: "all", label: "All" },
-  { value: "admin", label: "Admin" },
-  { value: "editor", label: "Editor" },
-  { value: "viewer", label: "Viewer" },
-];
 
-type TSelectItemValue = (typeof selectItem)[number]["value"];
 
-const SearchBox = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [selectedRole, setSelectedRole] = useState<TSelectItemValue>("all");
+interface SearchBoxProps {
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
+  selectedRole: TSelectItemValue;
+  setSelectedRole: React.Dispatch<React.SetStateAction<TSelectItemValue>>;
+}
 
-  useEffect(() => {
-    const delaySearch = setTimeout(() => {
-      console.log({ searchTerm, selectedRole });
-    }, 400);
-
-    return () => clearTimeout(delaySearch);
-  }, [searchTerm, selectedRole]);
-
+const SearchBox = ({
+  searchTerm,
+  setSearchTerm,
+  selectedRole,
+  setSelectedRole,
+}: SearchBoxProps) => {
   return (
     <div className="flex mt-20 gap-2">
       <InputGroup>

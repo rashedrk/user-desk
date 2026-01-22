@@ -10,8 +10,8 @@ import { useState, useEffect } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import useUserInfo from "@/hooks/useUserInfo";
-import UserDetailsSkeleton from "@/components/Skeleton/userDetailsSkeleton";
 import useUpdateStatus from "@/hooks/useUpdateStatus";
+import UserDetailsSkeleton from "@/components/Skeleton/userDetailsSkeleton";
 
 const UserDetails = ({ selectedId }: { selectedId: string }) => {
   const { data: userInfo, isLoading } = useUserInfo(selectedId);
