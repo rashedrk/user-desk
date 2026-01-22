@@ -11,12 +11,20 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import useUserInfo from "@/hooks/useUserInfo";
 import UserDetailsSkeleton from "@/components/Skeleton/userDetailsSkeleton";
+import useUpdateStatus from "@/hooks/useUpdateStatus";
 
 const UserDetails = ({ selectedId }: { selectedId: string }) => {
   const { data: userInfo, isLoading } = useUserInfo(selectedId);
+  const { mutate: updateStatus, isPending } = useUpdateStatus();
   const { name, email, role, active } = userInfo || {};
   const [isActive, setIsActive] = useState(active);
   const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    if (active !== undefined) {
+      setIsActive(active);
+    }
+  }, [active]);
 
   useEffect(() => {
     if (selectedId) {
@@ -27,6 +35,11 @@ const UserDetails = ({ selectedId }: { selectedId: string }) => {
       return () => clearInterval(interval);
     }
   }, [selectedId]);
+
+  const handleStatusChange = (active: boolean) => {
+    setIsActive(active);
+    updateStatus(selectedId);
+  };
 
   if (!selectedId) {
     return (
@@ -71,7 +84,8 @@ const UserDetails = ({ selectedId }: { selectedId: string }) => {
           <div className="flex items-center space-x-2">
             <Switch
               checked={isActive}
-              onCheckedChange={setIsActive}
+              onCheckedChange={handleStatusChange}
+              disabled={isPending}
               id="status"
             />
             <Label
