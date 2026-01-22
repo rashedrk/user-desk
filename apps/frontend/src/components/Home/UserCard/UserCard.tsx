@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import type { TUser } from "@/types/user.type";
 
@@ -8,8 +8,7 @@ const UserCard = ({userData} : {userData: TUser}) => {
     <Card className="w-xs mb-2 hover:shadow-lg cursor-pointer">
       <CardContent className="flex items-start gap-4">
         <Avatar className="h-12 w-12">
-          <AvatarImage src="" alt="" />
-          <AvatarFallback>RK</AvatarFallback>
+          <AvatarFallback>{name.slice(0, 2)}</AvatarFallback>
         </Avatar>
         <div className="flex-1">
           <h3 className="font-semibold text-base mb-1">{name}</h3>
