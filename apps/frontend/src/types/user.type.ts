@@ -18,3 +18,5 @@ export type TUserInfo = TUser & {
 }
 
 export type TSelectItemValue = (typeof selectItem)[number]["value"];
+
+export type TSortOrder = 'asc' | 'desc' | null;

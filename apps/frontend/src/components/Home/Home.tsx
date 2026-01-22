@@ -3,7 +3,7 @@ import { Separator } from "../ui/separator";
 import SearchBox from "./SearchBox/SearchBox";
 import UserCard from "./UserCard/UserCard";
 import UserDetails from "./UserDetails/UserDetails";
-import type { TUser, TQueryParams, TSelectItemValue } from "@/types/user.type";
+import type { TUser, TQueryParams, TSelectItemValue, TSortOrder } from "@/types/user.type";
 import { useState, useEffect } from "react";
 import UserCardSkeleton from "../Skeleton/UserCardSkeleton";
 import UserDetailsSkeleton from "../Skeleton/userDetailsSkeleton";
@@ -12,7 +12,7 @@ const Home = () => {
   const [selectedId, setSelectedId] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedRole, setSelectedRole] = useState<TSelectItemValue>("all");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
+  const [sortOrder, setSortOrder] = useState<TSortOrder>(null);
   const [queryParams, setQueryParams] = useState<TQueryParams>({});
 
   useEffect(() => {

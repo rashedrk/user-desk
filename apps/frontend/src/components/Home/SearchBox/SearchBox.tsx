@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/input-group";
 import { Search, ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type { TSelectItemValue } from "@/types/user.type";
+import type { TSelectItemValue, TSortOrder } from "@/types/user.type";
 import { selectItem } from "@/constant/user.constant";
 
 interface SearchBoxProps {
@@ -22,8 +22,8 @@ interface SearchBoxProps {
   setSearchTerm: (value: string) => void;
   selectedRole: TSelectItemValue;
   setSelectedRole: React.Dispatch<React.SetStateAction<TSelectItemValue>>;
-  sortOrder: "asc" | "desc" | null;
-  setSortOrder: React.Dispatch<React.SetStateAction<"asc" | "desc" | null>>;
+  sortOrder: TSortOrder;
+  setSortOrder: React.Dispatch<React.SetStateAction<TSortOrder>>;
 }
 
 const SearchBox = ({
