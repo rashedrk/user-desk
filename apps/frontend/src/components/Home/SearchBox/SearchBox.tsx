@@ -12,17 +12,18 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { Search } from "lucide-react";
+import { Search, ArrowUpDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import type { TSelectItemValue } from "@/types/user.type";
 import { selectItem } from "@/constant/user.constant";
-
-
 
 interface SearchBoxProps {
   searchTerm: string;
   setSearchTerm: (value: string) => void;
   selectedRole: TSelectItemValue;
   setSelectedRole: React.Dispatch<React.SetStateAction<TSelectItemValue>>;
+  sortOrder: "asc" | "desc" | null;
+  setSortOrder: React.Dispatch<React.SetStateAction<"asc" | "desc" | null>>;
 }
 
 const SearchBox = ({
@@ -30,7 +31,18 @@ const SearchBox = ({
   setSearchTerm,
   selectedRole,
   setSelectedRole,
+  sortOrder,
+  setSortOrder,
 }: SearchBoxProps) => {
+  const toggleSort = () => {
+    if (!sortOrder) {
+      setSortOrder("asc");
+    } else if (sortOrder === "asc") {
+      setSortOrder("desc");
+    } else {
+      setSortOrder(null);
+    }
+  };
   return (
     <div className="flex mt-20 gap-2">
       <InputGroup>
@@ -59,6 +71,21 @@ const SearchBox = ({
           </SelectGroup>
         </SelectContent>
       </Select>
+
+      <Button
+        variant="outline"
+        size="default"
+        onClick={toggleSort}
+        className="gap-2"
+      >
+        <ArrowUpDown className="h-4 w-4" />
+        Sort by Name
+        {sortOrder && (
+          <span className="text-xs">
+            ({sortOrder === "asc" ? "A-Z" : "Z-A"})
+          </span>
+        )}
+      </Button>
     </div>
   );
 };

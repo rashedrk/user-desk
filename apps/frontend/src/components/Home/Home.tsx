@@ -12,6 +12,7 @@ const Home = () => {
   const [selectedId, setSelectedId] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedRole, setSelectedRole] = useState<TSelectItemValue>("all");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
   const [queryParams, setQueryParams] = useState<TQueryParams>({});
 
   useEffect(() => {
@@ -19,12 +20,13 @@ const Home = () => {
       const params: TQueryParams = {};
       if (searchTerm) params.search = searchTerm;
       if (selectedRole !== "all") params.role = selectedRole;
-      setSelectedId('');
+      if (sortOrder) params.sort = sortOrder;
+      setSelectedId("");
       setQueryParams(params);
     }, 400);
 
     return () => clearTimeout(delaySearch);
-  }, [searchTerm, selectedRole]);
+  }, [searchTerm, selectedRole, sortOrder]);
 
   const { data: users, isLoading } = useUsers(queryParams);
 
@@ -35,6 +37,8 @@ const Home = () => {
         setSearchTerm={setSearchTerm}
         selectedRole={selectedRole}
         setSelectedRole={setSelectedRole}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
       />
       <div className="flex mt-10 gap-4 h-full ">
         <div>
