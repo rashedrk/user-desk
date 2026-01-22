@@ -17,11 +17,11 @@ const selectItem = [
   { value: "viewer", label: "Viewer" },
 ];
 
-type SelectItemValue = typeof selectItem[number]["value"];
+type TSelectItemValue = typeof selectItem[number]["value"];
 
 const SearchBox = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [selectedRole, setSelectedRole] = useState<SelectItemValue>("all");
+  const [selectedRole, setSelectedRole] = useState<TSelectItemValue>("all");
 
   useEffect(() => {
     const delaySearch = setTimeout(() => {
