@@ -33,10 +33,11 @@ The API is running at [http://localhost:3000](http://localhost:3000).
 ```
 user-desk/
 ├── apps/
-│   ├── web/         # Frontend application (React + React Router)
-│   └── server/      # Backend API (Express)
+│   ├── frontend/         # Frontend application (React + React Router)
+│   └── backend/      # Backend API (Express)
 ├── packages/
-│   ├── api/         # API layer / business logic
+│   ├──config /         # configuration files
+│   ├──env /            #env config
 ```
 
 ## Available Scripts

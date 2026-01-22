@@ -1,4 +1,4 @@
-import { env } from "@user-desk/env/server";
+import { env } from "@user-desk/env/backend";
 import cors from "cors";
 import express from "express";
 
