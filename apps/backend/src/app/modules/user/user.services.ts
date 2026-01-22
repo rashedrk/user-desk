@@ -23,6 +23,12 @@ const getAllUsers = async (query: TUserQueryRequest = {}) => {
 
     return prisma.user.findMany({
         where,
+        select: {
+            id: true,
+            name: true,
+            role: true,
+            active: true,
+        },
         ...(sort && { orderBy: { name: sort } })
     });
 }
