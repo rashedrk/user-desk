@@ -55,7 +55,7 @@ const Home = () => {
                 onClick={() => setSelectedId(user.id)}
                 className="cursor-pointer"
               >
-                <UserCard userData={user} />
+                <UserCard selectedId={selectedId} userData={user} />
               </div>
             ))
           )}

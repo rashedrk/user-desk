@@ -2,10 +2,19 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import type { TUser } from "@/types/user.type";
 
-const UserCard = ({userData} : {userData: TUser}) => {
-  const {name, active, role} = userData
+const UserCard = ({
+  userData,
+  selectedId,
+}: {
+  userData: TUser;
+  selectedId: string;
+}) => {
+  const { name, active, role } = userData;
+  const activeUser = selectedId === userData.id;
   return (
-    <Card className="w-xs mb-2 hover:shadow-lg cursor-pointer">
+    <Card
+      className={`w-xs mb-2 hover:shadow-lg cursor-pointer transition-transform ${activeUser && "border border-primary scale-105"}`}
+    >
       <CardContent className="flex items-start gap-4">
         <Avatar className="h-12 w-12">
           <AvatarFallback>{name.slice(0, 2)}</AvatarFallback>
