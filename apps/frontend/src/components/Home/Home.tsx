@@ -27,6 +27,7 @@ const Home = () => {
 
     return () => clearTimeout(delaySearch);
   }, [searchTerm, selectedRole, sortOrder]);
+  
 
   const { data: users, isLoading } = useUsers(queryParams);
 
@@ -49,7 +50,7 @@ const Home = () => {
               ))}
             </>
           ) : (
-            users.map((user: TUser) => (
+            users && users.map((user: TUser) => (
               <div
                 key={user.id}
                 onClick={() => setSelectedId(user.id)}

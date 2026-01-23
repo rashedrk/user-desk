@@ -6,8 +6,8 @@ const useUsers = (params?: TQueryParams) => {
     const query = params ? '?' + new URLSearchParams(params as Record<string, string>).toString() : '';
     return useQuery({
         queryKey: ['users', params],
-        queryFn: async () => {
-            const res = await fetcher(`/users${query}`)
+        queryFn: async ({ signal }) => {
+            const res = await fetcher(`/users${query}`, { signal })
             return res?.data
         },
     })
