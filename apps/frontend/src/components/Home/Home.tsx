@@ -5,8 +5,9 @@ import UserCard from "./UserCard/UserCard";
 import UserDetails from "./UserDetails/UserDetails";
 import type { TUser, TQueryParams, TSelectItemValue, TSortOrder } from "@/types/user.type";
 import { useState, useEffect } from "react";
-import UserCardSkeleton from "../Skeleton/UserCardSkeleton";
-import UserDetailsSkeleton from "../Skeleton/UserDetailsSkeleton";
+import UserCardSkeleton from "@/components/Skeleton/UserCardSkeleton";
+import UserDetailsSkeleton from "@/components/Skeleton/UserDetailsSkeleton";
+
 
 
 const Home = () => {
