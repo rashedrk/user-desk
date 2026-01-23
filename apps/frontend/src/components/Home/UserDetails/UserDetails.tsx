@@ -11,7 +11,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import useUserInfo from "@/hooks/useUserInfo";
 import useUpdateStatus from "@/hooks/useUpdateStatus";
-import UserDetailsSkeleton from "@/components/Skeleton/userDetailsSkeleton";
+import UserDetailsSkeleton from "@/components/Skeleton/UserDetailsSkeleton";
 
 const UserDetails = ({ selectedId }: { selectedId: string }) => {
   const { data: userInfo, isLoading } = useUserInfo(selectedId);
