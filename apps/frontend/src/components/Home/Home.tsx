@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import UserCardSkeleton from "../Skeleton/UserCardSkeleton";
 import UserDetailsSkeleton from "../Skeleton/userDetailsSkeleton";
 
+
 const Home = () => {
   const [selectedId, setSelectedId] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
