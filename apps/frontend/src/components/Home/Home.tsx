@@ -40,6 +40,7 @@ const Home = () => {
         setSelectedRole={setSelectedRole}
         sortOrder={sortOrder}
         setSortOrder={setSortOrder}
+        disabled={isLoading} 
       />
       <div className="flex mt-10 gap-4 h-full ">
         <div>

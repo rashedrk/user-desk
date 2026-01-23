@@ -24,6 +24,7 @@ interface SearchBoxProps {
   setSelectedRole: React.Dispatch<React.SetStateAction<TSelectItemValue>>;
   sortOrder: TSortOrder;
   setSortOrder: React.Dispatch<React.SetStateAction<TSortOrder>>;
+  disabled?: boolean;
 }
 
 const SearchBox = ({
@@ -33,6 +34,7 @@ const SearchBox = ({
   setSelectedRole,
   sortOrder,
   setSortOrder,
+  disabled
 }: SearchBoxProps) => {
   const toggleSort = () => {
     if (!sortOrder) {
@@ -56,7 +58,7 @@ const SearchBox = ({
         </InputGroupAddon>
       </InputGroup>
 
-      <Select value={selectedRole} onValueChange={setSelectedRole}>
+      <Select disabled={disabled} value={selectedRole} onValueChange={setSelectedRole}>
         <SelectTrigger className="w-24">
           <SelectValue />
         </SelectTrigger>
@@ -77,6 +79,7 @@ const SearchBox = ({
         size="default"
         onClick={toggleSort}
         className="gap-2"
+        disabled={disabled}
       >
         <ArrowUpDown className="h-4 w-4" />
         Sort by Name
