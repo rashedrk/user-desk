@@ -12,17 +12,19 @@
     "check-types": "pnpm -r check-types",
     "dev:native": "pnpm --filter native dev",
     "dev:web": "pnpm --filter web dev",
-    "dev:server": "pnpm --filter server dev"
-  },
-  "dependencies": {
-    "@user-desk/env": "workspace:*",
-    "dotenv": "catalog:",
-    "zod": "catalog:"
-  },
-  "devDependencies": {
-    "@types/node": "^22.13.14",
-    "@user-desk/config": "workspace:*",
-    "typescript": "^5"
-  },
-  "packageManager": "pnpm@10.28.1"
+    "dev:server": "pnpm --filter server dev",
+    "build:backend": "pnpm --filter user-desk-backend build",
+    "start:backend": "pnpm --filter user-desk-backend start"
+},
+"dependencies": {
+  "@user-desk/env": "workspace:*",
+  "dotenv": "catalog:",
+  "zod": "catalog:"
+},
+"devDependencies": {
+  "@types/node": "^22.13.14",
+  "@user-desk/config": "workspace:*",
+  "typescript": "^5"
+},
+"packageManager": "pnpm@10.28.1"
 }
